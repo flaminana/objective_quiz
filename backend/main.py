@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
-from quiz_engine import generate_question
+from backend.quiz_engine import generate_question
 import os
 
 app = FastAPI()
