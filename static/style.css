@@ -1,0 +1,26 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+#quiz {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+#feedback {
+  margin-top: 10px;
+  font-weight: bold;
+}
+#score {
+  margin-top: 5px;
+  color: #555;
+}
