@@ -5,7 +5,7 @@ import os
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 # Get API key from environment (safer)
-API_KEY = os.getenv("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")
+API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 def query_openrouter(prompt: str, model: str = "mistralai/mistral-7b") -> str:
     headers = {
@@ -28,3 +28,4 @@ def query_openrouter(prompt: str, model: str = "mistralai/mistral-7b") -> str:
 
     data = response.json()
     return data["choices"][0]["message"]["content"]
+
