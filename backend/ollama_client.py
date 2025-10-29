@@ -1,13 +1,30 @@
 import requests
+import os
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+# Use OpenRouter endpoint
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
-def query_ollama(prompt: str, model: str = "mistral") -> str:
-    response = requests.post(OLLAMA_URL, json={
+# Get API key from environment (safer)
+API_KEY = os.getenv("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")
+
+def query_openrouter(prompt: str, model: str = "mistralai/mistral-7b") -> str:
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json",
+    }
+
+    payload = {
         "model": model,
-        "prompt": prompt,
-        "stream":False #disable streaming to get clean JSON
-    })
-    print("🔊 Raw Ollama response:", response.text) #log full response
-    
-    return response.json()["response"]
+        "messages": [
+            {"role": "system", "content": "You are a quiz generator that outputs questions cleanly."},
+            {"role": "user", "content": prompt}
+        ]
+    }
+
+    response = requests.post(OPENROUTER_URL, headers=headers, json=payload)
+
+    if response.status_code != 200:
+        raise Exception(f"OpenRouter error {response.status_code}: {response.text}")
+
+    data = response.json()
+    return data["choices"][0]["message"]["content"]
