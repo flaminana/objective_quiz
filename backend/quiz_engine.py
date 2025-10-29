@@ -1,4 +1,4 @@
-from backend.ollama_client import query_ollama
+from backend.ollama_client import query_openrouter as query_ollama
 
 def generate_question(topic="Basic beginner A1 German grammar and vocabulary"):
     prompt = (
@@ -41,3 +41,4 @@ def check_answer(user_choice: str, correct_answer: str) -> str:
     else:
 
         return f"❌ Incorrect. The correct answer was {correct_answer}."
+
